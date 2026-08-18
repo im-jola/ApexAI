@@ -13,6 +13,20 @@ from leaderboard import Leaderboard
 from population import Population
 
 
+def fade_surface(surface: pg.Surface, fade_amount: int = 2):
+    """
+    Slightly reduces the opacity of the surface on each call.
+    fade_amount: Higher values make skid marks disappear faster (e.g., 2-5).
+    """
+    # Create a translucent dark overlay matching the surface size
+    fade_overlay = pg.Surface(surface.get_size(), pg.SRCALPHA)
+    # The last tuple value (alpha) controls how much alpha is subtracted each frame
+    fade_overlay.fill((0, 0, 0, fade_amount))
+    
+    # Blit with BLEND_RGBA_SUB to subtract alpha across the surface
+    surface.blit(fade_overlay, (0, 0), special_flags=pg.BLEND_RGBA_SUB)
+
+
 def main():
     # ==========================================
     # INITIALIZATION & SETUP
@@ -163,6 +177,12 @@ def main():
         for cp in checkpoints:
             pg.draw.circle(screen, (0, 255, 0), cp.astype(int), 6)
 
+        # ----------------------------------------------------
+        # FADE SKID MARKS
+        # Slowly reduce the alpha of existing marks each frame
+        # ----------------------------------------------------
+        fade_surface(skidmark_surface, fade_amount=3)
+
         for _ in range(speed_multiplier):
             keys = pg.key.get_pressed()
             player_turning = keys[pg.K_a] or keys[pg.K_d] or keys[pg.K_LEFT] or keys[pg.K_RIGHT]
@@ -174,6 +194,7 @@ def main():
 
             if not population.update_all(screen, track_mask, checkpoints):
                 population.evolve()
+                skidmark_surface.fill((0, 0, 0, 0))
                 for car in population.cars:
                     car.lap_start_time = time.time()
                 break
