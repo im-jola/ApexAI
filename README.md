@@ -24,7 +24,7 @@ Ensure you have Python 3.8+ installed on your system.
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/im-jola/ApexAI.git](https://github.com/im-jola/ApexAI.git)
+   git clone https://github.com/im-jola/ApexAI.git
    cd ApexAI
 
 2. **Install dependencies:**
