@@ -27,6 +27,10 @@ Ensure you have Python 3.8+ installed on your system.
    git clone [https://github.com/im-jola/ApexAI.git](https://github.com/im-jola/ApexAI.git)
    cd ApexAI
 
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+
 ## 📸 Screenshots
 
 ### Track Editor
