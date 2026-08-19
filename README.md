@@ -26,3 +26,14 @@ Ensure you have Python 3.8+ installed on your system.
    ```bash
    git clone [https://github.com/im-jola/ApexAI.git](https://github.com/im-jola/ApexAI.git)
    cd ApexAI
+
+## 📸 Screenshots
+
+### Track Editor
+![Checkpoint Editor](screenshot_77.png)
+
+### Real-Time Simulation
+![AI Simulation](screenshot_78.png)
+
+### Telemetry & Neural Network Visualizer
+![Telemetry Visualizer](screenshot_79.png)
